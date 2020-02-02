@@ -1,0 +1,39 @@
+<form #blogForm="ngForm" (ngSubmit)="saveBlog()">
+  <div class="card my-2" *ngIf="foodBlog">
+    <h6 class="card-header bg-secondary text-white">
+      {{cardTitle}}
+    </h6>
+
+    <div class="card-body">
+
+      <div class="form-group">
+        <label for="recipeName" class="col-form-label"
+          [class.text-danger]="recipeName.touched && recipeName.invalid">Recipe Name</label>
+
+        <input id="recipeName" name="recipeName" [(ngModel)]="foodBlog.recipeName" type="text" class="form-control"
+          #recipeName="ngModel" [class.is-invalid]="recipeName.touched && recipeName.invalid" required>
+
+        <span *ngIf="recipeName.touched && recipeName.errors?.required" class="invalid-feedback">
+          Recipe Name is required</span>
+      </div>
+
+      <div class="form-group">
+        <label for="recipeDetails" class="col-form-label"
+          [class.text-danger]="recipeDetails.touched && recipeDetails.invalid">Recipe Details</label>
+
+        <textarea id="recipeDetails" name="recipeDetails" [(ngModel)]="foodBlog.recipeDetails" class="form-control"
+          #recipeDetails="ngModel" [class.is-invalid]="recipeDetails.touched && recipeDetails.invalid" rows="10"
+          required></textarea>
+
+        <span *ngIf="recipeDetails.touched && recipeDetails.errors?.required" class="invalid-feedback">
+          Recipe Details are required</span>
+      </div>
+
+    </div>
+
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary" [disabled]="blogForm.invalid">Save</button>
+    </div>
+
+  </div>
+</form>

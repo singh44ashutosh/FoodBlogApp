@@ -1,0 +1,31 @@
+<form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+	<div class="card my-2">
+		<h6 class="card-header bg-secondary text-white">
+			Login - Food Blog Application
+		</h6>
+		<div class="card-body">
+			<div class="form-group">
+				<label for="username" class="col-form-label" [class.text-danger]="uname.touched && uname.invalid">Username</label>
+
+				<input id="username" name="username" [(ngModel)]="username" type="text" class="form-control" #uname="ngModel"
+          [class.is-invalid]="uname.touched && uname.invalid" required>
+
+				<span *ngIf="uname.touched" class="invalid-feedback">
+          Username is required</span>
+			</div>
+      <div class="form-group">
+				<label for="password" class="col-form-label" [class.text-danger]="pwd.touched && pwd.invalid">Password</label>
+
+				<input id="password" name="password" [(ngModel)]="password" type="password" class="form-control" #pwd="ngModel"
+          [class.is-invalid]="pwd.touched && pwd.invalid" required>
+
+				<span *ngIf="pwd.touched" class="invalid-feedback">
+          Password is required</span>
+			</div>
+		</div>
+
+		<div class="card-footer">
+			<button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+		</div>
+	</div>
+</form>
